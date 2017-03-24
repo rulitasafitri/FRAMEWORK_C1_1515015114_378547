@@ -10,12 +10,29 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('pengguna/lihat/{pengguna}','penggunaController@lihat');
+Route::post('pengguna/simpan','penggunaController@simpan');
+Route::get('pengguna/edit/{pengguna}','penggunaController@edit');
+Route::post('pengguna/edit/{pengguna}','penggunaController@update');
+Route::get('pengguna/hapus/{pengguna}','penggunaController@hapus');
 
-//Route::get('/', function () {
-  //  return view ('Welcome');
-//});
+Route::get('matakuliah/lihat/{matakuliah}','matakuliahController@lihat');
+Route::post('matakuliah/simpan','matakuliahController@simpan');
+Route::get('matakuliah/edit/{matakuliah}','matakuliahController@edit');
+Route::post('matakuliah/edit/{matakuliah}','matakuliahController@update');
+Route::get('matakuliah/hapus/{matakuliah}','matakuliahController@hapus');
 
-//Route::auth();
+Route::get('ruangan/lihat/{ruangan}','ruanganController@lihat');
+Route::post('ruangan/simpan','ruanganController@simpan');
+Route::get('ruangan/edit/{ruangan}','ruanganController@edit');
+Route::post('ruangan/edit/{ruangan}','ruanganController@update');
+Route::get('ruangan/hapus/{ruangan}','ruanganController@hapus');
+
+Route::get('/', function () {
+   return view ('Welcome');
+});
+
+Route::auth();
 Route::get('ruangan','ruanganController@awal');
 Route::get('ruangan/tambah','ruanganController@tambah');
 
@@ -40,12 +57,11 @@ Route::get('pengguna/tambah','penggunaController@tambah');
 Route::get('pengguna/rulita',function()
 	{
 		$pengguna = new App\pengguna();
-	    $pengguna->username = 'rulita';
-   		$pengguna->password = 'safitri';
+	    $pengguna->username = 'safitri';
+   		$pengguna->password = 'rulita';
   		$pengguna->save();
 		return "data dengan username {$pengguna->username} telah disimpan";
  	});
 
    
-
 
