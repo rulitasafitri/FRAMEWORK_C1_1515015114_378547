@@ -10,6 +10,32 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('jadwal_matakuliah/lihat/{jadwal_matakuliah}', 'jadwal_matakuliahController@lihat');
+Route::post('jadwal_matakuliah/simpan', 'jadwal_matakuliahController@simpan');
+Route::get('jadwal_matakuliah/edit/{jadwal_matakuliah}', 'jadwal_matakuliahController@edit');
+Route::post('jadwal_matakuliah/edit/{jadwal_matakuliah}', 'jadwal_matakuliahController@update');
+Route::get('jadwal_matakuliah/hapus/{jadwal_matakuliah}', 'jadwal_matakuliahController@hapus');
+
+Route::get('dosen_matakuliah/lihat/{dosen_matakuliah}', 'dosen_matakuliahController@lihat');
+Route::post('dosen_matakuliah/simpan', 'dosen_matakuliahController@simpan');
+Route::get('dosen_matakuliah/edit/{dosen_matakuliah}', 'dosen_matakuliahController@edit');
+Route::post('dosen_matakuliah/edit/{dosen_matakuliah}', 'dosen_matakuliahController@update');
+Route::get('dosen_matakuliah/hapus/{dosen_matakuliah}', 'dosen_matakuliahController@hapus');
+
+Route::get('dosen/lihat/{dosen}', 'dosenController@lihat');
+Route::post('dosen/simpan', 'dosenController@simpan');
+Route::get('dosen/edit/{dosen}', 'dosenController@edit');
+Route::post('dosen/edit/{dosen}', 'dosenController@update');
+Route::get('dosen/hapus/{dosen}', 'dosenController@hapus');
+
+Route::get('mahasiswa/lihat/{mahasiswa}','mahasiswaController@lihat');
+Route::post('mahasiswa/simpan','mahasiswaController@simpan');
+Route::get('mahasiswa/edit/{mahasiswa}','mahasiswaController@edit');
+Route::post('mahasiswa/edit/{mahasiswa}','mahasiswaController@update');
+Route::get('mahasiswa/hapus/{mahasiswa}','mahasiswaController@hapus');
+
+
 Route::get('pengguna/lihat/{pengguna}','penggunaController@lihat');
 Route::post('pengguna/simpan','penggunaController@simpan');
 Route::get('pengguna/edit/{pengguna}','penggunaController@edit');

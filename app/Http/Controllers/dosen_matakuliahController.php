@@ -8,6 +8,12 @@ use App\Http\Requests;
 
 use App\dosen_matakuliah;
 
+use App\jadwal_matakuliah;
+
+use App\dosen;
+
+use matakuliah;
+
 class dosen_matakuliahController extends Controller
 {
       public function awal()
@@ -26,4 +32,6 @@ class dosen_matakuliahController extends Controller
     	$dosen_matakuliah->save();
     	return "data dengan title_dosen_matakuliah{$dosen_matakuliah->dosen_id} telah disimpan";
     }
+
+    
 }
