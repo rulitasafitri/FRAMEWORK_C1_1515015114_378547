@@ -37,7 +37,7 @@ class matakuliahController extends Controller
     public function awal()
     {
         
-        return view('matakuliah.awal', ['data'=>matakuliah::all()]);
+        return view('matakuliah.awal', ['semuamatakuliah'=>matakuliah::all()]);
     }
     public function tambah()
     {

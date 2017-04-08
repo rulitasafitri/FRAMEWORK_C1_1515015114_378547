@@ -11,51 +11,32 @@ use App\dosen;
 use App\pengguna;
 
 class dosenController extends Controller
-// {
-//      public function awal()
-//     {
-//     	return "Hello dari dosenController";
-//     }
-//     public function tambah()
-//     {
-//     	return $this->simpan();
-//     }
-//     public function simpan()
-//     {
-//     	$dosen = new dosen();
-//     	$dosen->nama_dosen ='Hariyo';
-//     	$dosen->nip ='23264234';
-//     	$dosen->alamat ='jalan juanda';
-//     	$dosen->pengguna_id=1;
-//     	$dosen->save();
-//     	return "data dengan title_dosen{$dosen->title_dosen} telah disimpan";
-//     }
-
-
-// }
 
 {
-    //
-    public function awal()
+     protected $informasi = 'Gagal Melakukan Aksi';
+     public function awal()
     {
-      
-        return view('dosen.awal', ['data'=>dosen::all()]);
+        $semuadosen = dosen::all();
+        return view('dosen.awal',['semuadosen'=>dosen::all()]);
     }
     public function tambah()
     {
-      
         return view('dosen.tambah');
     }
     public function simpan(Request $input)
     {
-        $dosen = new dosen();
-        $dosen->nama_dosen = $input->nama_dosen;
-        $dosen->nip = $input->nim;
-        $dosen->alamat = $input->alamat;
-        $informasi = $dosen->save() ? 'berhasil simpan data' : 'gagal simpan data';
-        return redirect('dosen')->with(['infromasi'=>$informasi]);
-    }
-     public function edit($id)
+        $pengguna = new pengguna($input->only('username','password'));
+        if($pengguna->save()){
+            $dosen = new dosen();
+            $dosen->nama_dosen = $input->nama_dosen;
+            $dosen->nip = $input->nip;
+            $dosen->alamat = $input->alamat;
+            if($pengguna->dosen()->save($dosen)) $this->informasi = 'Berhasil Simpan Data';
+        }
+            return redirect('dosen')->with(['informasi' => $this->informasi]);
+        }
+
+    public function edit($id)
     {
         $dosen = dosen::find($id);
         return view('dosen.edit')->with(array('dosen'=>$dosen));
@@ -69,16 +50,25 @@ class dosenController extends Controller
     {
         $dosen = dosen::find($id);
         $dosen->nama_dosen = $input->nama_dosen;
-        $dosen->nim = $input->nim;
+        $dosen->nip = $input->nip;
         $dosen->alamat = $input->alamat;
-        $informasi = $dosen->save()? 'berhasil update data' : 'gagal update data';
-        return redirect('dosen')->with(['informasi'=>$informasi]);
+        if(!is_null($input->username)){
+            $pengguna = $dosen->pengguna->fill($input->only('username'));
+            if(!empty($input->password)) $pengguna->password = $input->password;
+            if($pengguna->save()) $this->informasi = 'Berhasil Simpan Data';
+        }else{
+            $this->informasi = 'Berhasil Ubah Data';        
+        }
+        return redirect('dosen')->with(['informasi' => $this->informasi]);
     }
+
     public function hapus($id)
     {
         $dosen = dosen::find($id);
-        $informasi = $dosen->delete() ?'berhasil hapus data' : 'gagal hapus data';
-        return redirect('dosen')->with(['informasi'=>$informasi]);
+        if ($dosen->pengguna()->delete()){
+            if ($dosen->delete()) $this->informasi = 'Berhasil Hapus Data';
+        }
+
+        return redirect('dosen')->with(['informasi'=> $this->informasi]);
     }
 }
-

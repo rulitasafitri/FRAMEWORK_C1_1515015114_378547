@@ -6,11 +6,10 @@
 	</div>
 	<table class="table">
 		<tr>
-			<td>Matakuliah</td>
+			<td>Title</td>
 			<td>:</td>
 			<td>{{ $matakuliah->title }}</td>
-		</tr>
-		<tr>
+		</tr><tr>
 			<td>Keterangan</td>
 			<td>:</td>
 			<td>{{ $matakuliah->keterangan }}</td>

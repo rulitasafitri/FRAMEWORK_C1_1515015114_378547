@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class pengguna extends Model
 {
     protected $table = 'pengguna';// model tabel pengguna
-    // protected $fillable = ['username','password'];
+    protected $fillable = ['username','password'];
 
     public function mahasiswa()//model pengguna berrelasi dengan model mahasiswa, untuk menentukan hubungan relasi dengan membuat fungsi mahasiswa
     {

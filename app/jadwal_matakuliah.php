@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class jadwal_matakuliah extends Model
 {
     protected $table = 'jadwal_matakuliah'; // model tabel jadwal matakuliah
-    // protected $fillable = ['mahasiswa_id','ruangan_id','dosen_matakuliah_id'];
+     protected $fillable = ['mahasiswa_id','ruangan_id','dosen_matakuliah_id'];
 
 	public function mahasiswa()//model pada tabel jadwal_matakuliah berrelasi dengan  model mahasiswa, untuk menentukan hubungan relasi dengan membuat fungsi matakulaih pada model jadwal_matakuliah
     {
